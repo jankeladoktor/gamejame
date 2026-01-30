@@ -293,6 +293,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: cf3ad2cf-434a-4430-89cd-cc58a8e13eb4
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cbaa99ac-5c5d-4e67-a532-afc3a5e87e91
+    m_ActionName: Player/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -308,7 +312,7 @@ Animator:
   m_GameObject: {fileID: 2515421765782978539}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9b04d574ee9c2394e98879802bc0bf68, type: 2}
+  m_Controller: {fileID: 9100000, guid: 74a8d1c381a6de14882cea7f606605f7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
