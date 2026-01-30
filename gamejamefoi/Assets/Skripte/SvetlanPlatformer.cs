@@ -14,13 +14,9 @@ public class SvetlanPlatformer : MonoBehaviour
     public Transform groundCheckPos;
     public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
     public LayerMask groundLayer;
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
     }
