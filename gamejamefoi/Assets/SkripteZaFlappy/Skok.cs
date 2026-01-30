@@ -98,10 +98,24 @@ public class Skok : MonoBehaviour
     }
 
     public void Dalje()
-        {
+    {
         Time.timeScale = 1f;
+
+        Svetlan svetlan = FindObjectOfType<Svetlan>();
+        if (svetlan != null)
+        {
+            svetlan.LevelUp();
+
+            PlayerPrefs.SetInt("nivo", svetlan.nivo);
+            PlayerPrefs.SetInt("HPmax", svetlan.HPmax);
+            PlayerPrefs.SetInt("napad", svetlan.napad);
+            PlayerPrefs.Save();
+        }
+
         SceneManager.LoadScene("SampleScene");
     }
+
+
     public void RestartGame()
     {
         Time.timeScale = 1f;
