@@ -88,6 +88,7 @@ public class NPC : MonoBehaviour, IInteractable
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
         PauseController.SetPause(false);
-        SceneManager.LoadScene("Borba");
+        SceneTransition.Instance.LoadSceneWithFade("Borba");
+
     }
 }
