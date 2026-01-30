@@ -10,6 +10,10 @@ public class SvetlanPlatformer : MonoBehaviour
     float horizontalMovement;
 
     public float jumpPower = 10f;
+
+    public Transform groundCheckPos;
+    public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
+    public LayerMask groundLayer;
     void Start()
     {
         
@@ -27,8 +31,31 @@ public class SvetlanPlatformer : MonoBehaviour
     }
 
     public void Jump(InputAction.CallbackContext context) {
-        if (context.performed) {
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+        if (isGrounded())
+        {
+            if (context.performed)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            }
+            else
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            }
         }
+    }
+
+    private bool isGrounded()
+    {
+        if(Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawCube(groundCheckPos.position, groundCheckSize);
     }
 }
