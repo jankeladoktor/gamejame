@@ -10,10 +10,12 @@ public class Igrac : MonoBehaviour
     private Vector2 moveInput;
     private Animator animator;
 
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        
     }
 
     private void Update()
@@ -34,4 +36,6 @@ public class Igrac : MonoBehaviour
         animator.SetFloat("InputX", moveInput.x);
         animator.SetFloat("InputY", moveInput.y);
     }
+   
+
 }
