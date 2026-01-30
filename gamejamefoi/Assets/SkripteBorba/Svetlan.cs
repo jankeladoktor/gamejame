@@ -7,7 +7,7 @@ public class Svetlan : MonoBehaviour
     public int nivo = 1;
     public int HPmax = 80;
     public int trenutniHP;
-    public string imeSvetlana = "Svetlan zvani Sveælan";
+    public string imeSvetlana = "Svetlan";
     public int napad = 15;
     private void Awake()
     {

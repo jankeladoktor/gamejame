@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class SkriptaBorbe : MonoBehaviour
 {
-    public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
+    public enum BattleState { START, CHOOSE_TO_FIGHT, PLAYERTURN, ENEMYTURN, WON, LOST }
     public BattleState state;
 
     public Svetlan svetlan;
@@ -13,7 +13,8 @@ public class SkriptaBorbe : MonoBehaviour
     public HUDborba playerHUD;
     public HUDborba enemyHUD;
 
-    public GameObject actionPanel;
+    public GameObject fightChoicePanel;  
+    public GameObject actionPanel;       
     public Text dialogueText;
 
     private void Start()
@@ -30,19 +31,23 @@ public class SkriptaBorbe : MonoBehaviour
         playerHUD.SetHUD(svetlan.imeSvetlana, svetlan.nivo, svetlan.trenutniHP, svetlan.HPmax);
         enemyHUD.SetHUD(darkec.imeDarkeca, darkec.nivo, darkec.trenutniHP, darkec.HPmax);
 
-        // START TEXT (kak si htio)
         dialogueText.text = "Darkec je spreman za kec na kec u matiènu!";
 
-        // odmah da si na potezu (gumbi se pojave u PlayerTurn)
-        state = BattleState.PLAYERTURN;
-        PlayerTurn();
+        fightChoicePanel.SetActive(true);   
+        actionPanel.SetActive(false);       
+
+        state = BattleState.CHOOSE_TO_FIGHT;
     }
 
-    void PlayerTurn()
+    public void OnStartFight()
     {
-        // dok biraš
+        if (state != BattleState.CHOOSE_TO_FIGHT) return;
+
+        fightChoicePanel.SetActive(false);  
+        actionPanel.SetActive(true);        
+
         dialogueText.text = "Odaberi kak buš klepil Darkeca!";
-        actionPanel.SetActive(true);
+        state = BattleState.PLAYERTURN;
     }
 
     public void OnNormalAttack()
@@ -59,11 +64,9 @@ public class SkriptaBorbe : MonoBehaviour
 
     IEnumerator PlayerAttackCoroutine(bool isHeavy)
     {
-        // makni gumbe èim klikneš
         actionPanel.SetActive(false);
 
-        // odmah ispiši koju si akciju odabrao
-        dialogueText.text = isHeavy ? "Svetlan koristi HEAVY attack!" : "Svetlan koristi LIGHT attack!";
+        dialogueText.text = isHeavy ? "Svetlan koristi NAPAD AUROM!" : "Svetlan koristi mekanu šapici kako bi ti nanio štetu!";
         yield return new WaitForSeconds(0.8f);
 
         float hitChance = isHeavy ? 0.7f : 0.95f;
@@ -71,16 +74,14 @@ public class SkriptaBorbe : MonoBehaviour
 
         if (!hit)
         {
-            dialogueText.text = isHeavy ? "Heavy attack je promašio!" : "Light attack je promašio!";
+            dialogueText.text = isHeavy ? "NAPAD AUROM je promašen!" : "Mekana šapica je ipak premekana da bi nanjela štetu Darkecu!";
             yield return new WaitForSeconds(1f);
         }
         else
         {
             int dmg = CalculateDamage(attackerAttack: svetlan.napad, isHeavy: isHeavy);
             darkec.PrimiStetu(dmg);
-
             enemyHUD.SetHP(darkec.trenutniHP, darkec.HPmax);
-
             dialogueText.text = $"Darkec prima {dmg} štete!";
             yield return new WaitForSeconds(1f);
 
@@ -98,16 +99,10 @@ public class SkriptaBorbe : MonoBehaviour
 
     IEnumerator EnemyTurnCoroutine()
     {
-        // dok darkec bira: nema gumba
-        actionPanel.SetActive(false);
-
-        // tekst kak si htio
         dialogueText.text = "Darkec grunta kak da te uspava...";
         yield return new WaitForSeconds(1.2f);
 
-        // Darkec AI
         bool heavy = Random.value < 0.3f;
-
         float hitChance = heavy ? 0.75f : 0.95f;
         bool hit = Random.value <= hitChance;
 
@@ -118,15 +113,12 @@ public class SkriptaBorbe : MonoBehaviour
         }
         else
         {
-            // ispiši koju akciju koristi
-            dialogueText.text = heavy ? "Darkec koristi HEAVY attack!" : "Darkec koristi LIGHT attack!";
+            dialogueText.text = heavy ? "Darkec koristi NAPAD AUROM!" : "Darkec koristi mekanu šapici kako bi ti nanio štetu!";
             yield return new WaitForSeconds(0.8f);
 
             int dmg = CalculateDamage(attackerAttack: darkec.napad, isHeavy: heavy);
             svetlan.PrimiStetu(dmg);
-
             playerHUD.SetHP(svetlan.trenutniHP, svetlan.HPmax);
-
             dialogueText.text = $"Svetlan prima {dmg} štete!";
             yield return new WaitForSeconds(1f);
 
@@ -139,28 +131,22 @@ public class SkriptaBorbe : MonoBehaviour
         }
 
         state = BattleState.PLAYERTURN;
-        PlayerTurn();
+        actionPanel.SetActive(true);
+        dialogueText.text = "Odaberi kak buš klepil Darkeca!";
     }
 
     int CalculateDamage(int attackerAttack, bool isHeavy)
     {
         float mult = isHeavy ? 1.5f : 1.0f;
-        int dmg = Mathf.RoundToInt(attackerAttack * mult);
-
-        dmg += Random.Range(-2, 3);
-
-        if (dmg < 1) dmg = 1;
-        return dmg;
+        int dmg = Mathf.RoundToInt(attackerAttack * mult) + Random.Range(-2, 3);
+        return Mathf.Max(1, dmg);
     }
 
     void EndBattle()
     {
-        actionPanel.SetActive(false);
-
         if (state == BattleState.WON)
             dialogueText.text = "Svetlan je pobijedio Darkeca!";
         else if (state == BattleState.LOST)
             dialogueText.text = "Svetlan je izgubio...";
     }
 }
-
