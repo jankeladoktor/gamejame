@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SkriptaBorbe : MonoBehaviour
@@ -148,5 +149,12 @@ public class SkriptaBorbe : MonoBehaviour
             dialogueText.text = "Svetlan je pobijedio Darkeca!";
         else if (state == BattleState.LOST)
             dialogueText.text = "Svetlan je izgubio...";
+        StartCoroutine(RestartAfterDelay(3f));
+
+    }
+    IEnumerator RestartAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("SampleScene");
     }
 }
