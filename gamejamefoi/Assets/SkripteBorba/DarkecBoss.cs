@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DarkecBoss : MonoBehaviour
 {
-   public string imeDarkeca = "Darkec vladar Tame";
+   public string imeDarkeca = "Darkec";
     public int nivo = 5;
     public int HPmax = 200;
     public int trenutniHP;
