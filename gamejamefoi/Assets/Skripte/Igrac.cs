@@ -9,9 +9,12 @@ public class Igrac : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveInput;
 
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        
     }
 
     private void Update()
@@ -23,4 +26,6 @@ public class Igrac : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>();
     }
+   
+
 }
