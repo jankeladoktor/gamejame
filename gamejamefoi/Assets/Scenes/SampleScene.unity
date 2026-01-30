@@ -1274,6 +1274,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Svetlan
       objectReference: {fileID: 0}
+    - target: {fileID: 3215180841894424746, guid: 5d8c8758f4d36684284f642bce662a56, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3563756879040356976, guid: 5d8c8758f4d36684284f642bce662a56, type: 3}
       propertyPath: m_Size.y
       value: 1.9624739
@@ -1293,6 +1297,14 @@ PrefabInstance:
     - target: {fileID: 5126041703674823245, guid: 5d8c8758f4d36684284f642bce662a56, type: 3}
       propertyPath: brzina
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958793316771224259, guid: 5d8c8758f4d36684284f642bce662a56, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958793316771224259, guid: 5d8c8758f4d36684284f642bce662a56, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7958793316771224259, guid: 5d8c8758f4d36684284f642bce662a56, type: 3}
       propertyPath: m_LocalPosition.x
