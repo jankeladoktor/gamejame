@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NPC : MonoBehaviour, IInteractable
 {
@@ -86,5 +88,6 @@ public class NPC : MonoBehaviour, IInteractable
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
         PauseController.SetPause(false);
+        SceneManager.LoadScene("Borba");
     }
 }
