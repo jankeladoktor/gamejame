@@ -1,24 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Skok : MonoBehaviour
 {
-    public float velocity = 1;
+    public GameObject gameOverScreen;  
+
+    public float velocity = 12f;  
     private Rigidbody2D rb;
+    private bool isGameOver = false; 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+      
+        if (isGameOver) return;
+        gameOverScreen.SetActive(false);
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = Vector2.up * velocity;
         }
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Contains("Prepreka") && !isGameOver)
+        {
+            GameOver();
+        }
+    }
+
+    void GameOver()
+    {
+        isGameOver = true;
+        Time.timeScale = 0f;  
+        gameOverScreen.SetActive(true); 
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
