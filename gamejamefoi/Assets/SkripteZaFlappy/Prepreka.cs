@@ -6,7 +6,7 @@ using UnityEngine;
 public class Prepreka : MonoBehaviour
 {
     public float maxVrijeme = 1;
-    public float tajmer = 0;
+    private float tajmer = 0;
     public GameObject preprekaPrefab;
     public float visina;
 
@@ -24,6 +24,7 @@ public class Prepreka : MonoBehaviour
             GameObject novaprepreka = Instantiate(preprekaPrefab);
             novaprepreka.transform.position = transform.position + new Vector3(0, Random.Range(-visina, visina), 0);
             Destroy(novaprepreka, 15);
+            tajmer = 0;
         }
         tajmer += Time.deltaTime;
     }
