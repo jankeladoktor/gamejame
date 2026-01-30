@@ -112,13 +112,13 @@ public class Skok : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        SceneManager.LoadScene("SampleScene");
+        SceneTransition.Instance.LoadSceneWithFade("SampleScene");
     }
 
 
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneTransition.Instance.LoadSceneWithFade(SceneManager.GetActiveScene().name);
     }
 }
