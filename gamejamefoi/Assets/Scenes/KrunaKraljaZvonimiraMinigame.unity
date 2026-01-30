@@ -509,6 +509,7 @@ GameObject:
   - component: {fileID: 424230459}
   - component: {fileID: 424230461}
   - component: {fileID: 424230462}
+  - component: {fileID: 424230463}
   m_Layer: 0
   m_Name: igrac
   m_TagString: Igrac
@@ -685,6 +686,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &424230463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424230456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fdc1db47b8280745962e2ffa72b1e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nivo: 1
+  HPmax: 80
+  trenutniHP: 0
+  imeSvetlana: Svetlan
+  napad: 15
+  lvl1: {fileID: 0}
+  lvl2: {fileID: 0}
+  lvl3: {fileID: 0}
+  lvl4: {fileID: 0}
+  lvl5: {fileID: 0}
 --- !u!1 &752146645
 GameObject:
   m_ObjectHideFlags: 0

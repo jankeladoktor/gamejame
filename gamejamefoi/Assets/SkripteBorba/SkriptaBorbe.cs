@@ -152,9 +152,25 @@ public class SkriptaBorbe : MonoBehaviour
         StartCoroutine(RestartAfterDelay(3f));
 
     }
+
     IEnumerator RestartAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("SampleScene");
+
+        Svetlan svetlan = FindObjectOfType<Svetlan>();
+
+        if (svetlan != null)
+        {
+            if (svetlan.nivo == 1)
+            {
+                SceneManager.LoadScene("KrunaKraljaZvonimiraMinigame");
+            }
+            else if (svetlan.nivo == 2)
+            {
+                SceneManager.LoadScene("Platformer");
+            }
+           
+        }
     }
+
 }
