@@ -10,44 +10,60 @@ public class Svetlan : MonoBehaviour
     public string imeSvetlana = "Svetlan";
     public int napad = 15;
     public GameObject lvl1;
-    public GameObject lvl2; 
+    public GameObject lvl2;
     public GameObject lvl3;
     public GameObject lvl4;
     public GameObject lvl5;
+
     private void Awake()
     {
+        nivo = PlayerPrefs.GetInt("nivo", nivo);
+        HPmax = PlayerPrefs.GetInt("HPmax", HPmax);
+        napad = PlayerPrefs.GetInt("napad", napad);
+
         trenutniHP = HPmax;
-        lvl1.SetActive(false);
-        lvl2.SetActive(false);
-        lvl3.SetActive(false);
-        lvl4.SetActive(false);
-        lvl5.SetActive(false);
+
+        if (lvl1 != null) lvl1.SetActive(false);
+        if (lvl2 != null) lvl2.SetActive(false);
+        if (lvl3 != null) lvl3.SetActive(false);
+        if (lvl4 != null) lvl4.SetActive(false);
+        if (lvl5 != null) lvl5.SetActive(false);
+
         OdabirSvetlana(nivo);
     }
+
+
     private void OdabirSvetlana(int nivo)
     {
+        if (lvl1 != null) lvl1.SetActive(false);
+        if (lvl2 != null) lvl2.SetActive(false);
+        if (lvl3 != null) lvl3.SetActive(false);
+        if (lvl4 != null) lvl4.SetActive(false);
+        if (lvl5 != null) lvl5.SetActive(false);
+
         switch (nivo)
         {
             case 1:
-                lvl1.SetActive(true);
+                if (lvl1 != null) lvl1.SetActive(true);
                 break;
             case 2:
-                lvl2.SetActive(true);
+                if (lvl2 != null) lvl2.SetActive(true);
                 break;
             case 3:
-                lvl3.SetActive(true);
+                if (lvl3 != null) lvl3.SetActive(true);
                 break;
             case 4:
-                lvl4.SetActive(true);
+                if (lvl4 != null) lvl4.SetActive(true);
                 break;
             case 5:
-                lvl5.SetActive(true);
+                if (lvl5 != null) lvl5.SetActive(true);
                 break;
             default:
-                lvl1.SetActive(true);
+                if (lvl1 != null) lvl1.SetActive(true);
                 break;
         }
     }
+
     public void LevelUp()
     {
         if (nivo >= 5) return;
@@ -59,8 +75,11 @@ public class Svetlan : MonoBehaviour
 
         trenutniHP = HPmax;
 
+        OdabirSvetlana(nivo);
+
         Debug.Log("Svetlan leveled up! Level: " + nivo);
     }
+
     public void PrimiStetu(int steta)
     {
         trenutniHP -= steta;
@@ -69,6 +88,7 @@ public class Svetlan : MonoBehaviour
             trenutniHP = 0;
         }
     }
+
     public bool JeHmrl()
     {
         return trenutniHP <= 0;
