@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 424230460}
   - component: {fileID: 424230459}
   - component: {fileID: 424230461}
+  - component: {fileID: 424230462}
   m_Layer: 0
   m_Name: letenje-osnovni_model
   m_TagString: Untagged
@@ -391,7 +392,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 05fc7096cd90f66428bd60f6795ebdb9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e38d6ab572c428342a35dbe5ea702bdb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -411,8 +412,8 @@ Transform:
   m_GameObject: {fileID: 424230456}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.671, y: 0.31, z: 0}
-  m_LocalScale: {x: 1.5537721, y: 1.6630416, z: 1.0619}
+  m_LocalPosition: {x: -2.656, y: 0.31, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1.0619}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -493,6 +494,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 2074992062}
   velocity: 4
+--- !u!95 &424230462
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424230456}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8ae17d65c17ef07459a488e6329391de, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &752146645
 GameObject:
   m_ObjectHideFlags: 0
