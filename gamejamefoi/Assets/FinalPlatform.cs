@@ -8,6 +8,23 @@ public class FinalPlatform : MonoBehaviour
     public float delayBeforeLoad = 7f;
     public AudioSource audioSource;
     private bool triggered = false;
+    [Header("Floating")]
+    public float amplitude = 0.25f;
+    public float frequency = 1f;
+    private Vector3 startPos;
+
+    private void Start()
+    {
+        startPos = transform.position;
+    }
+
+    private void Update()
+    {
+        float yOffset = Mathf.Sin(Time.time * frequency) * amplitude;
+        transform.position = new Vector3(startPos.x, startPos.y + yOffset, startPos.z);
+    }
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (triggered) return;
