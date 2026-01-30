@@ -17,6 +17,7 @@ public class Svetlan : MonoBehaviour
 
     private void Awake()
     {
+       
         nivo = PlayerPrefs.GetInt("nivo", nivo);
         HPmax = PlayerPrefs.GetInt("HPmax", HPmax);
         napad = PlayerPrefs.GetInt("napad", napad);
@@ -70,8 +71,8 @@ public class Svetlan : MonoBehaviour
 
         nivo++;
 
-        HPmax += 30;
-        napad += 20;
+        HPmax += 20;
+        napad += 10;
 
         trenutniHP = HPmax;
 
@@ -92,5 +93,9 @@ public class Svetlan : MonoBehaviour
     public bool JeHmrl()
     {
         return trenutniHP <= 0;
+    }
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }
