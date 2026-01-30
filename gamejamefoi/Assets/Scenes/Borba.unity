@@ -3289,6 +3289,11 @@ MonoBehaviour:
   trenutniHP: 0
   imeSvetlana: Svetlan
   napad: 15
+  lvl1: {fileID: 1749557164}
+  lvl2: {fileID: 980625901}
+  lvl3: {fileID: 1862094820}
+  lvl4: {fileID: 620994153}
+  lvl5: {fileID: 225173591}
 --- !u!1 &2051148830
 GameObject:
   m_ObjectHideFlags: 0
