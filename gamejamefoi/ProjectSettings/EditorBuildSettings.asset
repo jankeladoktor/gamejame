@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CutscenaKraj.unity
     guid: 299259a6b45ffc04b9ae9a4d1bbc95c6
+  - enabled: 1
+    path: Assets/Scenes/MazeRunner.unity
+    guid: 6bb3d0a6a497a234cb4641e725ced6ce
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c4e3da9673b8be344a92cd3291331b09, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: ebb0fec5b6c5ccf4eb173aed1f93ccd7, type: 3}
