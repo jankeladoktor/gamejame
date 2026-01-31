@@ -43,6 +43,6 @@ public class TriviaWinUI : MonoBehaviour
         }
 
        
-        SceneManager.LoadScene("SampleScene");
+        SceneTransition.Instance.LoadSceneWithFade("SampleScene");
     }
 }
