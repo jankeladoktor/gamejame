@@ -46,7 +46,7 @@ public class Skok : MonoBehaviour
         score++;
         Debug.Log("Score: " + score);
 
-        if (score >= 5 && !hasWon)
+        if (score >= 10 && !hasWon)
         {
             hasWon = true;
             EnterWinMode();
@@ -87,6 +87,18 @@ public class Skok : MonoBehaviour
 
         // dodatni delay 1s
         yield return new WaitForSeconds(extraDelayAfterSound);
+        Svetlan svetlan = FindObjectOfType<Svetlan>();
+
+        if (svetlan != null)
+        {
+
+            svetlan.LevelUp();
+
+            PlayerPrefs.SetInt("nivo", svetlan.nivo);
+            PlayerPrefs.SetInt("HPmax", svetlan.HPmax);
+            PlayerPrefs.SetInt("napad", svetlan.napad);
+            PlayerPrefs.Save();
+        }
 
         SceneTransition.Instance.LoadSceneWithFade(winNextScene);
     }

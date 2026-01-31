@@ -185,6 +185,11 @@ public class SkriptaBorbe : MonoBehaviour
                 SceneTransition.Instance.LoadSceneWithFade("Trivia");
 
             }
+            else if (svetlan.nivo == 5)
+            {
+                SceneTransition.Instance.LoadSceneWithFade("PocetniScreen");
+
+            }
 
 
 

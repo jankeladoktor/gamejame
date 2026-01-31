@@ -96,7 +96,22 @@ public class UpraviteljIgre : MonoBehaviour
             tekstNapretka.text = "Sve skupljeno! Učitavam sljedeću scenu...";
         }
 
+        Svetlan svetlan = FindObjectOfType<Svetlan>();
+
+        if (svetlan != null)
+        {
+
+            svetlan.LevelUp();
+
+            PlayerPrefs.SetInt("nivo", svetlan.nivo);
+            PlayerPrefs.SetInt("HPmax", svetlan.HPmax);
+            PlayerPrefs.SetInt("napad", svetlan.napad);
+            PlayerPrefs.Save();
+        }
+
         StartCoroutine(FadeOutIUcitajScenu());
+
+        
     }
 
     private IEnumerator FadeOutIUcitajScenu()
