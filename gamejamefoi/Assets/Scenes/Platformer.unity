@@ -49561,6 +49561,7 @@ GameObject:
   - component: {fileID: 678261404}
   - component: {fileID: 678261410}
   - component: {fileID: 678261411}
+  - component: {fileID: 678261412}
   m_Layer: 0
   m_Name: Svetlan
   m_TagString: Player
@@ -49856,6 +49857,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &678261412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678261403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fdc1db47b8280745962e2ffa72b1e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nivo: 1
+  HPmax: 80
+  trenutniHP: 0
+  imeSvetlana: Svetlan
+  napad: 15
+  lvl1: {fileID: 0}
+  lvl2: {fileID: 0}
+  lvl3: {fileID: 0}
+  lvl4: {fileID: 0}
+  lvl5: {fileID: 0}
 --- !u!1 &762900964
 GameObject:
   m_ObjectHideFlags: 0
