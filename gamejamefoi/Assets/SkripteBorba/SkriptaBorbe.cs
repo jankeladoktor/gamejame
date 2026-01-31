@@ -148,7 +148,7 @@ public class SkriptaBorbe : MonoBehaviour
         if (state == BattleState.WON)
             dialogueText.text = "Svetlan je pobijedio Darkeca!";
         else if (state == BattleState.LOST)
-            dialogueText.text = "Svetlan je izgubio...";
+            dialogueText.text = "Svetlan je izgubio, ali želja za pobjedom u njemu i dalje gori...";
         StartCoroutine(RestartAfterDelay(3f));
 
     }
