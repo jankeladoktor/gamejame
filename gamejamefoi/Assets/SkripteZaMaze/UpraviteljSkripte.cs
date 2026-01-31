@@ -97,6 +97,19 @@ public class UpraviteljIgre : MonoBehaviour
         }
 
         StartCoroutine(FadeOutIUcitajScenu());
+
+        Svetlan svetlan = FindObjectOfType<Svetlan>();
+
+        if (svetlan != null)
+        {
+
+            svetlan.LevelUp();
+
+            PlayerPrefs.SetInt("nivo", svetlan.nivo);
+            PlayerPrefs.SetInt("HPmax", svetlan.HPmax);
+            PlayerPrefs.SetInt("napad", svetlan.napad);
+            PlayerPrefs.Save();
+        }
     }
 
     private IEnumerator FadeOutIUcitajScenu()
@@ -129,7 +142,7 @@ public class UpraviteljIgre : MonoBehaviour
             glazbaPozadine.volume = pocetnaGlasnoca; // vrati za idući put
         }
 
-        SceneManager.LoadScene(imeSljedeceScene);
+        SceneTransition.Instance.LoadSceneWithFade(imeSljedeceScene);
     }
 }
 
