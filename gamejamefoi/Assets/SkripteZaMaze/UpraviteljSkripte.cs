@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class UpraviteljIgre : MonoBehaviour
 {
@@ -7,10 +9,18 @@ public class UpraviteljIgre : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private GameObject panelUpute;
-    [SerializeField] private TMP_Text tekstNapretka; // TMP umjesto Legacy Text
+    [SerializeField] private TMP_Text tekstNapretka;
 
     [Header("Player")]
     [SerializeField] private MonoBehaviour skriptaKretanjaIgraca;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource glazbaPozadine;
+
+    [Header("Scene")]
+    [SerializeField] private string imeSljedeceScene = "SampleScene";
+    [SerializeField] private float kasnjenjeUcitanja = 2.0f;
+    [SerializeField] private float trajanjeFadeOuta = 2.0f;
 
     private int skupljeno = 0;
     private int ukupno = 3;
@@ -19,6 +29,11 @@ public class UpraviteljIgre : MonoBehaviour
     private void Awake()
     {
         Instanca = this;
+
+        if (glazbaPozadine == null)
+        {
+            glazbaPozadine = GetComponent<AudioSource>();
+        }
     }
 
     private void Start()
@@ -37,6 +52,11 @@ public class UpraviteljIgre : MonoBehaviour
             {
                 panelUpute.SetActive(false);
                 if (skriptaKretanjaIgraca != null) skriptaKretanjaIgraca.enabled = true;
+
+                if (glazbaPozadine != null && !glazbaPozadine.isPlaying)
+                {
+                    glazbaPozadine.Play();
+                }
             }
         }
     }
@@ -50,7 +70,7 @@ public class UpraviteljIgre : MonoBehaviour
 
         if (skupljeno >= ukupno)
         {
-            ZavrsIgru();
+            ZavrsIgruIUcitajScenu();
         }
     }
 
@@ -62,7 +82,7 @@ public class UpraviteljIgre : MonoBehaviour
         }
     }
 
-    private void ZavrsIgru()
+    private void ZavrsIgruIUcitajScenu()
     {
         igraZavrsena = true;
 
@@ -73,10 +93,47 @@ public class UpraviteljIgre : MonoBehaviour
 
         if (tekstNapretka != null)
         {
-            tekstNapretka.text = "Pobjeda! Skupio si majicu, hlače i cipele.";
+            tekstNapretka.text = "Sve skupljeno! Učitavam sljedeću scenu...";
         }
+
+        StartCoroutine(FadeOutIUcitajScenu());
+    }
+
+    private IEnumerator FadeOutIUcitajScenu()
+    {
+        float pocetnaGlasnoca = 1f;
+        if (glazbaPozadine != null) pocetnaGlasnoca = glazbaPozadine.volume;
+
+        float trajanje = Mathf.Max(0.01f, trajanjeFadeOuta); // da ne bude 0
+        float cekanje = Mathf.Max(0f, kasnjenjeUcitanja);
+
+        float t = 0f;
+        while (t < cekanje)
+        {
+            t += Time.deltaTime;
+
+            // Fade počinje odmah i završava nakon trajanjeFadeOuta (može biti <= cekanje)
+            if (glazbaPozadine != null)
+            {
+                float omjer = Mathf.Clamp01(t / trajanje);
+                glazbaPozadine.volume = Mathf.Lerp(pocetnaGlasnoca, 0f, omjer);
+            }
+
+            yield return null;
+        }
+
+        if (glazbaPozadine != null)
+        {
+            glazbaPozadine.volume = 0f;
+            glazbaPozadine.Stop();
+            glazbaPozadine.volume = pocetnaGlasnoca; // vrati za idući put
+        }
+
+        SceneManager.LoadScene(imeSljedeceScene);
     }
 }
+
+
 
 
 
