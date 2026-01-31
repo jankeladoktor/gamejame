@@ -25,6 +25,17 @@ public class FinalPlatform : MonoBehaviour
             audioSource.Play();
 
         yield return new WaitForSeconds(delayBeforeLoad);
+        Svetlan svetlan = FindObjectOfType<Svetlan>();
+
+        if (svetlan != null)
+        {
+            svetlan.LevelUp();
+
+            PlayerPrefs.SetInt("nivo", svetlan.nivo);
+            PlayerPrefs.SetInt("HPmax", svetlan.HPmax);
+            PlayerPrefs.SetInt("napad", svetlan.napad);
+            PlayerPrefs.Save();
+        }
 
         SceneManager.LoadScene("SampleScene");
     }
