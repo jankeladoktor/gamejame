@@ -46,7 +46,7 @@ public class Skok : MonoBehaviour
         score++;
         Debug.Log("Score: " + score);
 
-        if (score >= 5 && !hasWon)
+        if (score >= 10 && !hasWon)
         {
             hasWon = true;
             EnterWinMode();

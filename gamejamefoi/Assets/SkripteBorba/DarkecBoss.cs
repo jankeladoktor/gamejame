@@ -6,7 +6,7 @@ public class DarkecBoss : MonoBehaviour
 {
    public string imeDarkeca = "Darkec";
     public int nivo = 5;
-    public int HPmax = 200;
+    public int HPmax = 210;
     public int trenutniHP;
     public int napad = 35;
     private void Awake()
