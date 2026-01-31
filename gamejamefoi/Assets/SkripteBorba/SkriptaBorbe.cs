@@ -32,7 +32,7 @@ public class SkriptaBorbe : MonoBehaviour
         playerHUD.SetHUD(svetlan.imeSvetlana, svetlan.nivo, svetlan.trenutniHP, svetlan.HPmax);
         enemyHUD.SetHUD(darkec.imeDarkeca, darkec.nivo, darkec.trenutniHP, darkec.HPmax);
 
-        dialogueText.text = "Darkec je spreman za kec na kec u matiËnu!";
+        dialogueText.text = "Darkec je spreman za kec na kec u mati√®nu!";
 
         fightChoicePanel.SetActive(true);   
         actionPanel.SetActive(false);       
@@ -47,7 +47,7 @@ public class SkriptaBorbe : MonoBehaviour
         fightChoicePanel.SetActive(false);  
         actionPanel.SetActive(true);        
 
-        dialogueText.text = "Odaberi kak buö klepil Darkeca!";
+        dialogueText.text = "Odaberi kak bu≈° klepil Darkeca!";
         state = BattleState.PLAYERTURN;
     }
 
@@ -67,7 +67,7 @@ public class SkriptaBorbe : MonoBehaviour
     {
         actionPanel.SetActive(false);
 
-        dialogueText.text = isHeavy ? "Svetlan koristi NAPAD AUROM!" : "Svetlan koristi mekanu öapici kako bi ti nanio ötetu!";
+        dialogueText.text = isHeavy ? "Svetlan koristi NAPAD AUROM!" : "Svetlan koristi mekanu ≈°apici kako bi ti nanio ≈°tetu!";
         yield return new WaitForSeconds(0.8f);
 
         float hitChance = isHeavy ? 0.7f : 0.95f;
@@ -75,7 +75,7 @@ public class SkriptaBorbe : MonoBehaviour
 
         if (!hit)
         {
-            dialogueText.text = isHeavy ? "NAPAD AUROM je promaöen!" : "Mekana öapica je ipak premekana da bi nanjela ötetu Darkecu!";
+            dialogueText.text = isHeavy ? "NAPAD AUROM je proma≈°en!" : "Mekana ≈°apica je ipak premekana da bi nanjela ≈°tetu Darkecu!";
             yield return new WaitForSeconds(1f);
         }
         else
@@ -83,7 +83,7 @@ public class SkriptaBorbe : MonoBehaviour
             int dmg = CalculateDamage(attackerAttack: svetlan.napad, isHeavy: isHeavy);
             darkec.PrimiStetu(dmg);
             enemyHUD.SetHP(darkec.trenutniHP, darkec.HPmax);
-            dialogueText.text = $"Darkec prima {dmg} ötete!";
+            dialogueText.text = $"Darkec prima {dmg} ≈°tete!";
             yield return new WaitForSeconds(1f);
 
             if (darkec.JeHmrl())
@@ -109,18 +109,18 @@ public class SkriptaBorbe : MonoBehaviour
 
         if (!hit)
         {
-            dialogueText.text = "Darkec je promaöio!";
+            dialogueText.text = "Darkec je proma≈°io!";
             yield return new WaitForSeconds(1f);
         }
         else
         {
-            dialogueText.text = heavy ? "Darkec koristi NAPAD AUROM!" : "Darkec koristi mekanu öapici kako bi ti nanio ötetu!";
+            dialogueText.text = heavy ? "Darkec koristi NAPAD AUROM!" : "Darkec koristi mekanu ≈°apici kako bi ti nanio ≈°tetu!";
             yield return new WaitForSeconds(0.8f);
 
             int dmg = CalculateDamage(attackerAttack: darkec.napad, isHeavy: heavy);
             svetlan.PrimiStetu(dmg);
             playerHUD.SetHP(svetlan.trenutniHP, svetlan.HPmax);
-            dialogueText.text = $"Svetlan prima {dmg} ötete!";
+            dialogueText.text = $"Svetlan prima {dmg} ≈°tete!";
             yield return new WaitForSeconds(1f);
 
             if (svetlan.JeHmrl())
@@ -133,7 +133,7 @@ public class SkriptaBorbe : MonoBehaviour
 
         state = BattleState.PLAYERTURN;
         actionPanel.SetActive(true);
-        dialogueText.text = "Odaberi kak buö klepil Darkeca!";
+        dialogueText.text = "Odaberi kak bu≈° klepil Darkeca!";
     }
 
     int CalculateDamage(int attackerAttack, bool isHeavy)
@@ -148,7 +148,7 @@ public class SkriptaBorbe : MonoBehaviour
         if (state == BattleState.WON)
             dialogueText.text = "Svetlan je pobijedio Darkeca!";
         else if (state == BattleState.LOST)
-            dialogueText.text = "Svetlan je izgubio, ali ûelja za pobjedom u njemu i dalje gori...";
+            dialogueText.text = "Svetlan je izgubio, ali ≈æelja za pobjedom u njemu i dalje gori...";
         StartCoroutine(RestartAfterDelay(3f));
 
     }
@@ -163,15 +163,34 @@ public class SkriptaBorbe : MonoBehaviour
         {
             if (svetlan.nivo == 1)
             {
-                SceneTransition.Instance.LoadSceneWithFade("KrunaKraljaZvonimiraMinigame");
+                SceneTransition.Instance.LoadSceneWithFade("MazeRunner");
             }
             else if (svetlan.nivo == 2)
+            {
+                SceneTransition.Instance.LoadSceneWithFade("KrunaKraljaZvonimiraMinigame");
+
+            }
+         
+            else if (svetlan.nivo == 3)
             {
                 SceneTransition.Instance.LoadSceneWithFade("Platformer");
 
             }
-           
+            else if (svetlan.nivo == 4)
+            {
+                SceneTransition.Instance.LoadSceneWithFade("Trivia");
+
+            }
+
+
+
         }
+    }
+
+    IEnumerator RestartAfterDelay2(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("CutscenaKraj");
     }
 
 }

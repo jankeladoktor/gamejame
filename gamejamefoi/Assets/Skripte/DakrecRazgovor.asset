@@ -19,6 +19,6 @@ MonoBehaviour:
   - Budi se frende...
   - I pripremi se za...
   - "FISKALNI OBRA\u010CUN!"
-  autoProgressLines: 01010100
+  autoProgressLines: 01010101
   autoProgressDelay: 1.5
   typingSpeed: 0.05
