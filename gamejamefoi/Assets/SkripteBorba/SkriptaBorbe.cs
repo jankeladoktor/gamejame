@@ -164,19 +164,25 @@ public class SkriptaBorbe : MonoBehaviour
         {
             if (svetlan.nivo == 1)
             {
-                SceneTransition.Instance.LoadSceneWithFade("KrunaKraljaZvonimiraMinigame");
+                SceneTransition.Instance.LoadSceneWithFade("MazeRunner");
             }
             else if (svetlan.nivo == 2)
             {
-                SceneTransition.Instance.LoadSceneWithFade("Platformer");
+                SceneTransition.Instance.LoadSceneWithFade("KrunaKraljaZvonimiraMinigame");
 
             }
          
             else if (svetlan.nivo == 3)
             {
+                SceneTransition.Instance.LoadSceneWithFade("Platformer");
+
+            }
+            else if (svetlan.nivo == 4)
+            {
                 SceneTransition.Instance.LoadSceneWithFade("Trivia");
 
             }
+
 
 
         }
