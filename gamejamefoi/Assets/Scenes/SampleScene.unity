@@ -4710,8 +4710,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2515421765782978539, guid: 5d8c8758f4d36684284f642bce662a56, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1929233915}
   m_SourcePrefab: {fileID: 100100000, guid: 5d8c8758f4d36684284f642bce662a56, type: 3}
+--- !u!1 &1929233914 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2515421765782978539, guid: 5d8c8758f4d36684284f642bce662a56, type: 3}
+  m_PrefabInstance: {fileID: 1929233913}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1929233915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929233914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fdc1db47b8280745962e2ffa72b1e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nivo: 1
+  HPmax: 80
+  trenutniHP: 0
+  imeSvetlana: Svetlan
+  napad: 15
+  lvl1: {fileID: 0}
+  lvl2: {fileID: 0}
+  lvl3: {fileID: 0}
+  lvl4: {fileID: 0}
+  lvl5: {fileID: 0}
 --- !u!1 &1932779365
 GameObject:
   m_ObjectHideFlags: 0
