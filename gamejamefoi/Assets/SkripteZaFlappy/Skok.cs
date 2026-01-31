@@ -4,34 +4,37 @@ using System.Collections;
 
 public class Skok : MonoBehaviour
 {
-    [Header("UI")]
-    public GameObject gameOverScreen;
-    public GameObject gameWinCanvas;  // NOVO! Tvoj Canvas s gumbom
+    [Header("Movement")]
+    public float velocity = 12f;
+    private Rigidbody2D rb;
 
     [Header("Win")]
     public GameObject krunaPrefab;
     public Transform krunaSpawnPoint;
-    public ParticleSystem victoryParticles;  // NOVO! Particles
 
-    public float velocity = 12f;
-    private Rigidbody2D rb;
-    private bool isGameOver = false;
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip krunaSound;
+
+    [Header("Scene Transition")]
+    public string winNextScene = "SampleScene";
+    public float extraDelayAfterSound = 1f;
+
     private bool isWinMode = false;
     public int score = 0;
     private bool hasWon = false;
 
+    private bool winTriggered = false;
+    private bool restarting = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        if (gameOverScreen) gameOverScreen.SetActive(false);
-        if (gameWinCanvas) gameWinCanvas.SetActive(false);
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (isGameOver) return;
-        if (gameOverScreen) gameOverScreen.SetActive(false);
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = Vector2.up * velocity;
@@ -53,6 +56,7 @@ public class Skok : MonoBehaviour
     void EnterWinMode()
     {
         isWinMode = true;
+
         Prepreka spawner = FindObjectOfType<Prepreka>();
         if (spawner) spawner.StopSpawning();
 
@@ -60,65 +64,42 @@ public class Skok : MonoBehaviour
             Instantiate(krunaPrefab, krunaSpawnPoint.position, Quaternion.identity);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name.Contains("Prepreka") && !isGameOver)
-            GameOver();
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Kruna") && isWinMode)
+        // KRUNA -> zvuk do kraja + 1s -> promjena scene
+        if (!winTriggered && other.CompareTag("Kruna") && isWinMode)
         {
+            winTriggered = true;
             Destroy(other.gameObject);
-            StartCoroutine(WinSequence());  
+
+            if (audioSource != null && krunaSound != null)
+                audioSource.PlayOneShot(krunaSound);
+
+            StartCoroutine(WinSequence());
         }
     }
 
-    IEnumerator WinSequence()  
+    IEnumerator WinSequence()
     {
-    
-        if (gameWinCanvas) gameWinCanvas.SetActive(true);
+        // čekaj da zvuk završi
+        if (krunaSound != null)
+            yield return new WaitForSeconds(krunaSound.length);
 
-       
-    
+        // dodatni delay 1s
+        yield return new WaitForSeconds(extraDelayAfterSound);
 
-        
-        yield return new WaitForSeconds(2f);
-
-        
-      
+        SceneTransition.Instance.LoadSceneWithFade(winNextScene);
     }
 
-    void GameOver()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        isGameOver = true;
-        Time.timeScale = 0f;
-        gameOverScreen?.SetActive(true);
-    }
+        // PREPREKA/PIPELINE -> kompletan restart scene
+        if (restarting || winTriggered) return;
 
-    public void Dalje()
-    {
-        Time.timeScale = 1f;
-
-        Svetlan svetlan = FindObjectOfType<Svetlan>();
-        if (svetlan != null)
+        if (collision.gameObject.name.Contains("Prepreka") || collision.gameObject.name.Contains("Pipe"))
         {
-            svetlan.LevelUp();
-
-            PlayerPrefs.SetInt("nivo", svetlan.nivo);
-            PlayerPrefs.SetInt("HPmax", svetlan.HPmax);
-            PlayerPrefs.SetInt("napad", svetlan.napad);
-            PlayerPrefs.Save();
+            restarting = true;
+            SceneTransition.Instance.LoadSceneWithFade(SceneManager.GetActiveScene().name);
         }
-
-        SceneTransition.Instance.LoadSceneWithFade("SampleScene");
-    }
-
-
-    public void RestartGame()
-    {
-        Time.timeScale = 1f;
-        SceneTransition.Instance.LoadSceneWithFade(SceneManager.GetActiveScene().name);
     }
 }
