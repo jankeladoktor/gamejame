@@ -9,6 +9,10 @@ TagManager:
   - Predmeti
   - Prepreke
   - Kruna
+  - A
+  - B
+  - C
+  - D
   layers:
   - Default
   - TransparentFX
