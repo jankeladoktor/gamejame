@@ -163,11 +163,12 @@ public class SkriptaBorbe : MonoBehaviour
         {
             if (svetlan.nivo == 1)
             {
-                SceneManager.LoadScene("KrunaKraljaZvonimiraMinigame");
+                SceneTransition.Instance.LoadSceneWithFade("KrunaKraljaZvonimiraMinigame");
             }
             else if (svetlan.nivo == 2)
             {
-                SceneManager.LoadScene("Platformer");
+                SceneTransition.Instance.LoadSceneWithFade("Platformer");
+
             }
            
         }
