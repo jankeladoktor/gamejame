@@ -149,7 +149,11 @@ public class SkriptaBorbe : MonoBehaviour
             dialogueText.text = "Svetlan je pobijedio Darkeca!";
         else if (state == BattleState.LOST)
             dialogueText.text = "Svetlan je izgubio, ali želja za pobjedom u njemu i dalje gori...";
-        StartCoroutine(RestartAfterDelay(3f));
+        if (state== BattleState.LOST) StartCoroutine(RestartAfterDelay(3f));
+        if (state == BattleState.WON)
+        {
+            StartCoroutine(RestartAfterDelay2(3f));
+        }
 
     }
 
@@ -190,7 +194,10 @@ public class SkriptaBorbe : MonoBehaviour
     IEnumerator RestartAfterDelay2(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("CutscenaKraj");
+
+
+        SceneTransition.Instance.LoadSceneWithFade("CutscenaKraj");
     }
+
 
 }
