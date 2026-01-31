@@ -96,8 +96,6 @@ public class UpraviteljIgre : MonoBehaviour
             tekstNapretka.text = "Sve skupljeno! Učitavam sljedeću scenu...";
         }
 
-        StartCoroutine(FadeOutIUcitajScenu());
-
         Svetlan svetlan = FindObjectOfType<Svetlan>();
 
         if (svetlan != null)
@@ -110,6 +108,10 @@ public class UpraviteljIgre : MonoBehaviour
             PlayerPrefs.SetInt("napad", svetlan.napad);
             PlayerPrefs.Save();
         }
+
+        StartCoroutine(FadeOutIUcitajScenu());
+
+        
     }
 
     private IEnumerator FadeOutIUcitajScenu()

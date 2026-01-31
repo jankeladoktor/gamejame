@@ -27,7 +27,7 @@ public class QuizManager : MonoBehaviour
     public Color correctColor = Color.green;
 
     [Header("Attempts")]
-    public int maxAttempts = 2;
+    public int maxAttempts = 4;
     private int attemptsLeft;
 
     [Header("Flow")]
