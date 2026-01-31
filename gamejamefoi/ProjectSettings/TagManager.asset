@@ -20,8 +20,8 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
+  - Maze
+  - player
   - 
   - 
   - 
@@ -49,4 +49,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: pozadina
+    uniqueID: 1844419467
+    locked: 0
+  - name: igrac
+    uniqueID: 2111779111
+    locked: 0
+  - name: narodna nosnja
+    uniqueID: 1644063541
+    locked: 0
+  - name: upute
+    uniqueID: 3192853
     locked: 0
