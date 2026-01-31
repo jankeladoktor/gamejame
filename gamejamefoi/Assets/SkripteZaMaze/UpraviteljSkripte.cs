@@ -129,7 +129,7 @@ public class UpraviteljIgre : MonoBehaviour
             glazbaPozadine.volume = pocetnaGlasnoca; // vrati za idući put
         }
 
-        SceneManager.LoadScene(imeSljedeceScene);
+        SceneTransition.Instance.LoadSceneWithFade(imeSljedeceScene);
     }
 }
 

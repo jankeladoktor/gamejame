@@ -55,6 +55,6 @@ public class FinalPlatform : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        SceneManager.LoadScene("SampleScene");
+        SceneTransition.Instance.LoadSceneWithFade("SampleScene");
     }
 }
